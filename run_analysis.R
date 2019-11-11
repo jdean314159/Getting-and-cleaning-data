@@ -20,7 +20,7 @@ save_data <- FALSE # flag on whether to save the combined data sets
 features <- read.csv(features_file, sep = ' ', header = FALSE)
 names(features) <- c("index", "measure")
 features$measure <- as.character(features$measure)
-
+ 
 # adds letter to feature names that are repeated to make them unique
 tmp <- table(features$measure)
 Features <- names(tmp[tmp>1])
