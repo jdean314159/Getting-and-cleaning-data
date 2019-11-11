@@ -20,7 +20,7 @@ save_data <- FALSE # flag on whether to save the combined data sets
 features <- read.csv(features_file, sep = ' ', header = FALSE)
 names(features) <- c("index", "measure")
 features$measure <- as.character(features$measure)
- 
+  
 # adds letter to feature names that are repeated to make them unique
 tmp <- table(features$measure)
 Features <- names(tmp[tmp>1])
@@ -220,13 +220,16 @@ get_group_means <- function(combined) {
   # wasn't sure if data set was inertial data or data with 561 features
   # so did both
   all_data <- consolidateSourceData(combined) # consolidate Inertial data
-  featured_data <- combined$X_combo[[1]]      # get data with 561 features
+  # featured_data <- combined$X_combo[[1]]      # get data with 561 features
+  filtered_data <- combined$filtered_cols[[1]]# get filtered data
   
   all_data_means <- get_means(all_data)       # get mean of variables for
-  featured_means <- get_means(featured_data)  # each subject, activity combo
+  # featured_means <- get_means(featured_data)  # each subject, activity combo 
+  filtered_means <- get_means(filtered_data)
   
   combined$data_means <- list(all_data_means)
-  combined$featured_means <- list(featured_means)
+  # combined$featured_means <- list(featured_means)
+  combined$filtered_means <- list(filtered_means)
   
   combined
 }
